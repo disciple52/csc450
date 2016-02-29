@@ -65,18 +65,22 @@
                 int won = isWin('x', shm);
                 if(won == 1) //winner
                 {
-                 printf("%c  %c  %c\n", shm[1], shm[2], shm[3]);
-                 printf("%c  %c  %c\n", shm[4], shm[5], shm[6]);
-                 printf("%c  %c  %c\n", shm[7], shm[8], shm[9]);
+                 printf("%c | %c | %c\n", shm[1], shm[2], shm[3]);
+                 printf("---------\n");
+                 printf("%c | %c | %c\n", shm[4], shm[5], shm[6]);
+                 printf("---------\n");
+                 printf("%c | %c | %c\n", shm[7], shm[8], shm[9]);
                  printf("Parent: winner\n");
                  shm[0] = 'w';
                  break;
                 }
                 else if(won == 2) //tie
                 {
-                 printf("%c  %c  %c\n", shm[1], shm[2], shm[3]);
-                 printf("%c  %c  %c\n", shm[4], shm[5], shm[6]);
-                 printf("%c  %c  %c\n", shm[7], shm[8], shm[9]);
+                 printf("%c | %c | %c\n", shm[1], shm[2], shm[3]);
+                 printf("---------\n");
+                 printf("%c | %c | %c\n", shm[4], shm[5], shm[6]);
+                 printf("---------\n");
+                 printf("%c | %c | %c\n", shm[7], shm[8], shm[9]);
                  printf("Parent: tie\n");
                  shm[0] = 'w';
                  break;
@@ -108,18 +112,22 @@
                 int won = isWin('o', shm);
                 if(won == 1) //winner
                 {
-                 printf("%c  %c  %c\n", shm[1], shm[2], shm[3]);
-                 printf("%c  %c  %c\n", shm[4], shm[5], shm[6]);
-                 printf("%c  %c  %c\n", shm[7], shm[8], shm[9]);
+                 printf("%c | %c | %c\n", shm[1], shm[2], shm[3]);
+                 printf("---------\n");
+                 printf("%c | %c | %c\n", shm[4], shm[5], shm[6]);
+                 printf("---------\n");
+                 printf("%c | %c | %c\n", shm[7], shm[8], shm[9]);
                  printf("Child: winner\n");
                  shm[0] = 'w';
                  break;
                 }
                 else if(won == 2) //tie
                 {
-                 printf("%c  %c  %c\n", shm[1], shm[2], shm[3]);
-                 printf("%c  %c  %c\n", shm[4], shm[5], shm[6]);
-                 printf("%c  %c  %c\n", shm[7], shm[8], shm[9]);
+                 printf("%c | %c | %c\n", shm[1], shm[2], shm[3]);
+                 printf("---------\n");
+                 printf("%c | %c | %c\n", shm[4], shm[5], shm[6]);
+                 printf("---------\n");
+                 printf("%c | %c | %c\n", shm[7], shm[8], shm[9]);
                  printf("Child: tie\n");
                  shm[0] = 'w';
                  break;
