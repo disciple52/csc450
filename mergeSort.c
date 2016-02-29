@@ -19,7 +19,7 @@ int main(int argc, char *argv[]) {
     {
         nums[i] = rand()%2;
     }
-	
+
 	//int nums[] = {6,2,3,1,9,10,15,13,12,17};
 	for(i = 0;i < numberOfElements;i++) 
 	{

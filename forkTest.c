@@ -2,9 +2,13 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <time.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+#include <sys/shm.h>
 
 int main(int argc, char** argv)
 {
+    /*
     srand(time(NULL));
     int num;
     int i;
@@ -19,26 +23,31 @@ int main(int argc, char** argv)
     {
         printf("woot: %d\n", nums[i]);
     }
+    */
     
-    /*
     printf("About to Fork...\n");
+    int mem2Share = 5;
+    int sharedMemID = shmdt(&mem2Share);
+    
+    printf("Shared Mem ID: %d", sharedMemID);
     
     pid_t pid = fork();
-    
-    i = 0;
     if(pid == 0)
     {
-        for(; i < 100; i++)
-        {
-            printf("parent: %d\n", i);
-        }
+        //I am the child
+        int sharedValue;
+        shmat(sharedMemID, &sharedValue, 0);
+        printf("I got the value (Child): %d", sharedValue);
+        return 0;
     }
     else
     {
-        for(; i < 100; i++)
-        {
-            printf("child (%d): %d\n", pid, i);
-        }
+        //I am the parent
+        int status;
+        int sharedValue;
+        shmat(sharedMemID, &sharedValue, 0);
+        printf("I got the value (Child): %d", sharedValue);
+        waitpid(pid, &status, 0);
+        printf("The child is done: %d\n", status);
     }
-    */
 }

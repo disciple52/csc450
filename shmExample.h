@@ -1,0 +1,1 @@
+void waitWhileEqual(char val, char* shm);
