@@ -4,9 +4,12 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
+
 
 int main(int argc, char** argv)
 {
+    int test = 0;
     uint16_t port = 3000;
     int error;
     struct sockaddr_in* server = malloc(sizeof(struct sockaddr_in));
@@ -29,23 +32,26 @@ int main(int argc, char** argv)
         char* server_reply = malloc(2000 * sizeof(char));
         while(1)
         {
-            error = recv(sockfd, server_reply,  (sizeof(server_reply)), 0);
+            
+            error = recv(sockfd, server_reply, sizeof(server_reply), 0);
             if(error < 0)
             {
                 puts("recv failed");
-                break;
             }
             else
             {
-                puts("Reply received\n");
+                puts("Reply received:");
                 puts(server_reply);
-                //char* msg = server_reply;
-                char* msg = "Hey there!";
-                send(sockfd, msg, strlen(msg), 0);
-                break;
-               
+                
+                if(test==0)
+                {
+                char* message = "Yes!";
+                send(sockfd, message, strlen(message), 0);
+                test = 1;
+                }
             }
         }
+        
         
     }
     free(server);
