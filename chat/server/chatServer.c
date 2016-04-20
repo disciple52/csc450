@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <semaphore.h>
 
 void setupServerSocket();
 void broadcast(char* msg, int* clients, int numClients);
@@ -25,7 +26,7 @@ int main(int argc, char** argv)
     int* clients = malloc(MAX_CLIENTS * sizeof(int));
     int numberOfConnectedClients = 0;
     sem_t block;
-    sem_init(%block, 0, 1);
+    sem_init(&block, 0, 1);
     
     char* message = "hello";
     int pid;
@@ -38,9 +39,10 @@ int main(int argc, char** argv)
     clientfd = accept(sockfd ,  (struct sockaddr *)server , &serverSize);
     printf("Client Connected.... %d\n", clientfd);
     
-    
-    //add this client to our array of clients - critical section when numberOfConnectedClients changes
+    //add this client to our array of clients
+    sem_wait(&block);
     clients[numberOfConnectedClients++] = clientfd;
+    sem_post(&block);
     
     //broadcast(message, clients, numberOfConnectedClients);
     
