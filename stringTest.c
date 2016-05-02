@@ -1,17 +1,36 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
+#include <signal.h>
+
+void processChat();
 
 int main(int argc, char** argv)
 {
-    int maxSize = 1000;
-    char* s = "lol msg 4 hello";
-    char* s2 = "world";
-    //puts(strstr(s, "4"));
-    char* parts = strtok(s, " "); //splits into parts on the spaces
-    int i = 0;
-    for(; i < 4; i++)
+    puts("Please enter something:");
+    processChat();
+}
+
+void processChat()
+{
+    char* command;
+    char* who;
+    char* msg;
+
+    scanf("%ms", &command);
+    if(strcmp("tell", command) == 0)
     {
-        printf("%s\n", parts[i]);
+        scanf("%ms %m[^\n]", &who, &msg);
+        printf("Sending private message (%s) to: %s\n", msg, who);
     }
-    //printf("%d\n", val);
+    else
+    {
+        scanf("%m[^\n]", &msg);
+        char* destination = malloc(sizeof(command) + sizeof(msg));
+        strcpy(destination, command);
+        strcat(destination, msg);
+        printf("Broadcasting: %s\n", destination);
+    }
+    //puts(command);
+    //puts(msg);
 }
